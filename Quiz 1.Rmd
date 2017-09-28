@@ -1,0 +1,20 @@
+---
+title: "Quiz01"
+author: "Amy Scott"
+date: "9/27/2017"
+output: html_document
+---
+
+```{r}
+library("curl", lib.loc="/Library/Frameworks/R.framework/Versions/3.4/Resources/library")
+z <- curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/master/AN597_Fall17/zombies.csv")
+zombies <- read.csv(z, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+
+library("dplyr", lib.loc="/Library/Frameworks/R.framework/Versions/3.4/Resources/library")
+females<-filter(zombies, gender=="Female")%>%
+  select(first_name, last_name)
+print(females)
+```
+
+
+
