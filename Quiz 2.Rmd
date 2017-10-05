@@ -1,0 +1,37 @@
+---
+title: "Quiz 2"
+author: "Amy Scott"
+date: "10/4/2017"
+output: html_document
+---
+
+1.	Make data frame with only first, last, F, height, weight, # zombies killed
+```{r}
+library(dplyr) 
+library(tidyr)
+library(curl)
+z <- curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/master/AN597_Fall17/zombies.csv")
+z <- read.csv(z, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+z<- tbl_df(z)
+z1<- z%>%
+  filter(gender=="Female") %>%
+  select(first_name, last_name, gender, height, weight, zombies_killed)
+```
+
+2.	What is mean in # zombies killed for > or = 5’5’’ and less than 5’5’’
+
+```{r}
+5*12+5 #65 is 5'5''
+ztall<-filter(z1, height>=65)
+zshort<-filter(z1, height<65)
+mean(ztall$zombies_killed)
+mean(zshort$zombies_killed)
+```
+
+3.	Graph this 
+```{r}
+library(ggplot2)
+# I don't know how to make a new column based on height. I want to learn this. I need it all the time. 
+
+#b<-ggplot(z1, aes(height, zombies_killed))
+```
